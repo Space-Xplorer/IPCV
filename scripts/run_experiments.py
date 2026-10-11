@@ -9,7 +9,7 @@ Executes all four quantitative experiments and generates publication-grade figur
    Generates results/tables/experiment_b_ablation.csv and results/figures/fig3_normalization_ablation.png.
 3. Experiment C: Parameter Sensitivity Sweep (Structuring Element Radius & k_sigma).
    Generates results/tables/experiment_c_sensitivity.csv and results/figures/fig4_parameter_sensitivity.png.
-4. Experiment D: Full 91-day SILSO Temporal Validation and Preprocessing Stage Diagram.
+4. Experiment D: Full 91-day SILSO Temporal Correlation and Regression Analysis.
    Generates results/figures/fig1_preprocessing_pipeline.png and results/figures/fig5_silso_temporal_validation.png.
 """
 
@@ -304,7 +304,7 @@ def run_experiment_c():
 
     ax2.set_title("Total Fractional Area ($A_f$) vs. Structuring Element Radius", fontsize=11, fontweight="bold")
     ax2.set_xlabel("Top-Hat Structuring Element Radius [px]", fontsize=10)
-    ax2.set_ylabel("Total Sunspot Area $A_f$ [MSH]", fontsize=10)
+    ax2.set_ylabel("Total Sunspot Area $A_f$ [ppm / $\\mu$Disk]", fontsize=10)
     ax2.grid(True, linestyle=":", alpha=0.5)
     ax2.legend()
 
@@ -317,7 +317,7 @@ def run_experiment_c():
 
 def run_experiment_d():
     print("\n" + "=" * 65)
-    print("EXPERIMENT D: Full 91-Day Batch Execution & SILSO Validation")
+    print("EXPERIMENT D: Full 91-Day Batch Execution & SILSO Correlation & Regression")
     print("=" * 65)
 
     pipe = SunspotPipeline(

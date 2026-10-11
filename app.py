@@ -212,11 +212,11 @@ kpi1, kpi2, kpi3, kpi4, kpi5 = st.columns(5)
 with kpi1:
     st.metric("Total Spots Detected", f"{summary['num_spots']}")
 with kpi2:
-    st.metric("Total Area (A_f)", f"{summary['total_area_msh']:.1f} MSH")
+    st.metric("Total Area (A_f)", f"{summary['total_area_msh']:.1f} ppm / µDisk")
 with kpi3:
-    st.metric("Umbra Area", f"{summary.get('total_umbra_msh', 0.0):.1f} MSH")
+    st.metric("Umbra Area", f"{summary.get('total_umbra_msh', 0.0):.1f} ppm")
 with kpi4:
-    st.metric("Penumbra Area", f"{summary.get('total_penumbra_msh', 0.0):.1f} MSH")
+    st.metric("Penumbra Area", f"{summary.get('total_penumbra_msh', 0.0):.1f} ppm")
 with kpi5:
     st.metric("Umbra/Penumbra Ratio", f"{summary.get('overall_up_ratio', 0.0):.3f}")
 
@@ -314,7 +314,7 @@ with tab2:
         with c_f1:
             fig_scat, ax_scat = plt.subplots(figsize=(6, 3.8))
             ax_scat.scatter(features_df["area_msh"], features_df["eccentricity"], color="#ffaa00", edgecolors="black", s=60, alpha=0.8)
-            ax_scat.set_xlabel("Physical Area (MSH)")
+            ax_scat.set_xlabel("Projected Area $A_f$ (ppm / µDisk)")
             ax_scat.set_ylabel("Eccentricity (from central moments)")
             ax_scat.set_title("Spot Area vs. Morphological Eccentricity")
             ax_scat.grid(True, linestyle="--", alpha=0.5)
@@ -324,8 +324,8 @@ with tab2:
         with c_f2:
             fig_hist, ax_hist = plt.subplots(figsize=(6, 3.8))
             ax_hist.scatter(features_df["penumbra_msh"], features_df["umbra_msh"], color="#00ddff", edgecolors="black", s=60, alpha=0.8)
-            ax_hist.set_xlabel("Penumbra Area (MSH)")
-            ax_hist.set_ylabel("Umbra Area (MSH)")
+            ax_hist.set_xlabel("Penumbra Area (ppm / µDisk)")
+            ax_hist.set_ylabel("Umbra Area (ppm / µDisk)")
             ax_hist.set_title("Umbra vs. Penumbra Physical Scaling")
             ax_hist.grid(True, linestyle="--", alpha=0.5)
             st.pyplot(fig_hist)
@@ -356,8 +356,8 @@ with tab3:
         
         color_af = "#ff8800"
         ax_t1.set_xlabel("Observation Date (Q4 2023)")
-        ax_t1.set_ylabel("Image-Derived Spot Area A_f (MSH)", color=color_af, fontweight="bold")
-        l1 = ax_t1.plot(dates_merged, merged["total_area_msh"], color=color_af, lw=2.2, label="Pipeline Area A_f (MSH)")
+        ax_t1.set_ylabel("Projected Spot Area $A_f$ (ppm / µDisk)", color=color_af, fontweight="bold")
+        l1 = ax_t1.plot(dates_merged, merged["total_area_msh"], color=color_af, lw=2.2, label="Pipeline Area $A_f$ (ppm / µDisk)")
         ax_t1.tick_params(axis="y", labelcolor=color_af)
         ax_t1.grid(True, linestyle="--", alpha=0.3)
 
@@ -387,8 +387,8 @@ with tab3:
         x_vals = np.linspace(merged["silso_sn"].min(), merged["silso_sn"].max(), 100)
         ax_s2.plot(x_vals, slope * x_vals + intercept, "r-", lw=2, label=f"Fit: A_f = {slope:.2f}·S_N + {intercept:.1f}")
         ax_s2.set_xlabel("Official SILSO Sunspot Number S_N")
-        ax_s2.set_ylabel("Classical CV Spot Area A_f (MSH)")
-        ax_s2.set_title(f"Empirical Cross-Validation (r = {metrics['pearson_r']:.3f}, R² = {metrics['r_squared']:.3f})")
+        ax_s2.set_ylabel("Projected Spot Area $A_f$ (ppm / µDisk)")
+        ax_s2.set_title(f"91-Day Temporal Correlation & Regression Analysis (r = {metrics['pearson_r']:.3f}, R² = {metrics['r_squared']:.3f})")
         ax_s2.grid(True, linestyle="--", alpha=0.4)
         ax_s2.legend()
         fig_scat2.tight_layout()
@@ -409,7 +409,7 @@ with tab4:
         if os.path.exists("results/tables/experiment_a_segmentation.csv"):
             df_a = pd.read_csv("results/tables/experiment_a_segmentation.csv")
             st.dataframe(df_a, use_container_width=True)
-            st.caption("Evaluated across 5 consensus reference masks. Top-Hat achieves highest Dice (0.854) and Recall (0.902).")
+            st.caption("Evaluated across 5 photometric consensus reference masks. Top-Hat achieves highest Dice (0.830) and Recall (1.000).")
         
         st.markdown("##### Experiment B: Normalization Ablation")
         if os.path.exists("results/tables/experiment_b_ablation.csv"):

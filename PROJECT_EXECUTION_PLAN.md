@@ -46,11 +46,11 @@ Rather than reinventing established methods or writing brittle ad-hoc heuristics
 * **Primary Research Metric:** Total Fractional Sunspot Area ($A_f$, in Millionths of Solar Hemisphere):
   $$A_f = \frac{\sum \text{Area}_{sunspot}}{\pi R_{disk}^2} \times 10^6 \quad [\text{MSH}]$$
 * **Primary Scientific Finding:** Quantify how classical morphological White Top-Hat segmentation compares to global Otsu and local adaptive thresholding, and measure its correlation against SILSO daily activity ($S_N$).
-* **Frozen Benchmark Subset:** 5 representative dates for pixel-level ground truth consensus evaluation (Dice, IoU, Precision, Recall):
+* **Frozen Benchmark Subset:** 5 representative dates for pixel-level photometric consensus evaluation (Dice, IoU, Precision, Recall):
   1. `2023-10-02` — High activity (large complex active region AR 13451)
   2. `2023-10-04` — High activity (multi-region distributed activity)
   3. `2023-10-14` — Moderate activity (isolated mature sunspots)
-  4. `2023-11-17` — Low activity (quiet photosphere, minimal spots)
+  4. `2023-11-17` — Low activity (quiet photosphere, minimal faint pores — primary sensitivity boundary)
   5. `2023-11-21` — Resurgence / East limb transit (spots near solar limb)
 
 ---
@@ -67,9 +67,9 @@ Rather than reinventing established methods or writing brittle ad-hoc heuristics
                                     │
 ┌───────────────────────────────────▼────────────────────────────────────┐
 │ Phase 1: Problem Finalization & Scope Freeze (COMPLETED)               │
-│   • Frozen Formulation: Fractional Sunspot Area (A_f, MSH)             │
+│   • Frozen Formulation: Fractional Sunspot Area (A_f, ppm / µDisk)     │
 │   • Frozen Dataset: 91 daily SDO/HMI FITS frames (Oct 1 – Dec 31, 2023)│
-│   • Frozen Benchmark: 5 representative ground-truth consensus masks    │
+│   • Frozen Benchmark: 5 representative photometric consensus masks     │
 └───────────────────────────────────┬────────────────────────────────────┘
                                     │
 ┌───────────────────────────────────▼────────────────────────────────────┐
@@ -269,7 +269,7 @@ Rather than reinventing established methods or writing brittle ad-hoc heuristics
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ BLOCK 4: 91-Day Batch Execution & SILSO Validation (Exp C & D) (Hours 6 – 8)│
+│ BLOCK 4: 91-Day Batch Execution & SILSO Correlation (Exp C & D) (Hours 6 – 8)│
 ├─────────────────────────────────────────────────────────────────────────────┤
 │ • Implement pipeline.py with mask caching (results/masks/*.npz)             │
 │ • Run scripts/run_pipeline.py across all 91 daily FITS files (~15 seconds)  │
