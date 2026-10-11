@@ -1,0 +1,11 @@
+date,condition,dice,iou,precision,recall,limb_false_positives
+2023-10-02,Normalized (Limb Corrected),0.9074,0.8304,0.8304,1.0,34
+2023-10-02,Ablated (Raw Uncorrected),0.7968,0.6623,0.817,0.7777,203
+2023-10-04,Normalized (Limb Corrected),0.9075,0.8306,0.8306,1.0,0
+2023-10-04,Ablated (Raw Uncorrected),0.7835,0.644,0.7743,0.7929,207
+2023-10-14,Normalized (Limb Corrected),0.9433,0.8928,0.8928,1.0,0
+2023-10-14,Ablated (Raw Uncorrected),0.844,0.7301,0.8143,0.876,151
+2023-11-17,Normalized (Limb Corrected),0.5085,0.3409,0.3409,1.0,36
+2023-11-17,Ablated (Raw Uncorrected),0.0872,0.0456,0.0456,1.0,329
+2023-11-21,Normalized (Limb Corrected),0.8814,0.7879,0.7879,1.0,303
+2023-11-21,Ablated (Raw Uncorrected),0.8398,0.7238,0.8373,0.8422,362

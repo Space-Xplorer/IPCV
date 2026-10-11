@@ -1,0 +1,43 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing & Hypothesis cache
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
+
+# Environments & Local Configuration
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE & Operating System artifacts
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Large Astronomical Data Binaries (>1.4 GB)
+*.fits
+*.fits.gz
+data/raw_fits/
+data/daily_fits/
+
+# Batch Pipeline Mask Cache
+results/masks/
+
+# External Reference Repositories
+Ref_Repos/
+
+# Retain Benchmark Reference Masks
+!data/groundtruth/*.npz
+!data/groundtruth/*.png
